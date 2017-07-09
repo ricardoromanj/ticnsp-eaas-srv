@@ -1,5 +1,5 @@
 {
-  "name": "ticnsp-evangelio-server",
+  "name": "ticnsp-eaas-srv",
   "version": "1.0.0",
   "description": "Server for daily readings. TICNSP.",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rjricardo/ticnsp-evangelio-server.git"
+    "url": "git+https://github.com/rjricardo/ticnsp-eaas-srv.git"
   },
   "keywords": [
     "ticnsp",
@@ -19,9 +19,9 @@
   "author": "Ricardo Roman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rjricardo/ticnsp-evangelio-server/issues"
+    "url": "https://github.com/rjricardo/ticnsp-eaas-srv/issues"
   },
-  "homepage": "https://github.com/rjricardo/ticnsp-evangelio-server#readme",
+  "homepage": "https://github.com/rjricardo/ticnsp-eaas-srv#readme",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",

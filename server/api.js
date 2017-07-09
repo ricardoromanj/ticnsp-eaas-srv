@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import { getConnection } from '@/config/mongodb';
 import logger from '@/config/logger';
+import settings from '@/config/settings';
 
 var api = {};
 
@@ -28,7 +29,7 @@ function updateReading(db, readingDoc) {
 }
 
 function checkOpts(opts) {
-  var currentDay = parseInt(moment().format('YYYYMMDD'));
+  var currentDay = parseInt(moment().utcOffset(settings.utcOffset).format('YYYYMMDD'));
   // currentDay.setHours(0,0,0,0);
   logger.debug("Current time: ", currentDay);
   if (typeof opts === 'undefined') {
