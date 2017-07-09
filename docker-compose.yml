@@ -1,0 +1,15 @@
+app:
+  build: .
+  command: npm start
+  links:
+    - db
+  environment:
+    MONGO_URL: "mongodb://db/ticnsp_evangelio"
+    LOG_LEVEL: "debug"
+  volumes:
+    - ".:/usr/src/app"
+  ports:
+    - 8000:5000
+
+db:
+  image: mongo
