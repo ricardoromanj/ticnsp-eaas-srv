@@ -4,7 +4,7 @@ app:
   links:
     - db
   environment:
-    MONGO_URL: "mongodb://db/ticnsp_evangelio"
+    MONGO_URL: "mongodb://db/ticnsp_eaas"
     LOG_LEVEL: "debug"
   volumes:
     - ".:/usr/src/app"

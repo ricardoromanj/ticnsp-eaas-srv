@@ -16,6 +16,7 @@ var router = express.Router();
 
 router.get('/liturgy', (req, res) => {
   var reqOpts = req.query;
+  res.set('Content-Type', 'application/json');
   api.getLiturgy(reqOpts).then((result) => {
     logger.info(`${req.ip} - GET /liturgy - 200 OK`);
     res.status(200).json({
@@ -32,6 +33,7 @@ router.get('/liturgy', (req, res) => {
 
 router.get('/liturgictitle', (req, res) => {
   var reqOpts = req.query;
+  res.set('Content-Type', 'application/json');
   api.getLiturgy(reqOpts).then((result) => {
     res.status(200).json({
       status: "OK",
@@ -47,6 +49,7 @@ router.get('/liturgictitle', (req, res) => {
 
 router.get('/saint', (req, res) => {
   var reqOpts = req.query;
+  res.set('Content-Type', 'application/json');
   api.getLiturgy(reqOpts).then((result) => {
     res.status(200).json({
       status: "OK",
@@ -62,6 +65,7 @@ router.get('/saint', (req, res) => {
 
 router.get('/feast', (req, res) => {
   var reqOpts = req.query;
+  res.set('Content-Type', 'application/json');
   api.getLiturgy(reqOpts).then((result) => {
     res.status(200).json({
       status: "OK",
@@ -76,6 +80,7 @@ router.get('/feast', (req, res) => {
 });
 
 router.get('/reading/:content', (req, res) => {
+  res.set('Content-Type', 'application/json');
   if (!_.includes(CONTOPTS, req.params.content))
   {
     res.status(500).json({
@@ -101,6 +106,7 @@ router.get('/reading/:content', (req, res) => {
 });
 
 router.get('/readingst/:content', (req, res) => {
+  res.set('Content-Type', 'application/json');
   if (!_.includes(CONTOPTS, req.params.content))
   {
     res.status(500).json({
@@ -126,6 +132,7 @@ router.get('/readingst/:content', (req, res) => {
 });
 
 router.get('/readinglt/:content', (req, res) => {
+  res.set('Content-Type', 'application/json');
   if (!_.includes(CONTOPTS, req.params.content))
   {
     res.status(500).json({
