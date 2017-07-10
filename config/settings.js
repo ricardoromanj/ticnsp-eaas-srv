@@ -20,9 +20,15 @@ if (logLevel === '' || (typeof logLevel === 'undefined')) {
   logLevel = 'info';
 }
 
+var utcOffset = process.env.UTC_OFFSET;
+if (utcOffset === '' || (typeof utcOffset === 'undefined')) {
+  utcOffset = -6;
+}
+
 settings.env = env;
 settings.port = port;
 settings.mongoUrl = mongoUrl;
 settings.logLevel = logLevel;
+settings.utcOffset = utcOffset;
 
 module.exports = settings;
