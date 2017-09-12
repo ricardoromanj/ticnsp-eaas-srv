@@ -2,10 +2,10 @@ import Promise from 'bluebird';
 import evangelizo from 'evangelizo';
 import _ from 'lodash';
 import moment from 'moment';
-import settings from 'settings';
 
 import { getConnection } from '@/config/mongodb';
 import logger from '@/config/logger';
+import settings from '@/config/settings';
 
 var api = {};
 

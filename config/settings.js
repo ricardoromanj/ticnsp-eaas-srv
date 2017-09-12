@@ -12,7 +12,7 @@ if (port === '' || (typeof port === 'undefined')) {
 
 var mongoUrl = process.env.MONGO_URL;
 if (mongoUrl === '' || (typeof mongoUrl === 'undefined')) {
-  mongoUrl = 'mongodb://localhost:4000/ticnsp_evangelio';
+  mongoUrl = 'mongodb://localhost:4000/ticnsp_eaas_db';
 }
 
 var logLevel = process.env.LOG_LEVEL;
