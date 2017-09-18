@@ -1,4 +1,4 @@
-const settings = {}
+const settings = {};
 
 /* ************************************************************************** */
 /* Set up connection to the database, hostname is the only REQUIRED parameter */
@@ -55,9 +55,11 @@ if (logLevel === '' || (typeof logLevel === 'undefined')) {
   logLevel = 'info';
 }
 
-var utcOffset = process.env.UTC_OFFSET;
+var utcOffset = process.env.DEFAULT_UTC_OFFSET;
 if (utcOffset === '' || (typeof utcOffset === 'undefined')) {
   utcOffset = -6;
+} else {
+  utcOffset = parseInt(utcOffset);
 }
 
 settings.env = env;

@@ -11,6 +11,8 @@ import settings from '@/config/settings';
 // being inserted. Otherwise setup a job to delete empty records
 var api = {};
 
+// This function is called everytime we get a new object part of daily
+// liturgy
 function updateReading(db, readingDoc) {
   logger.debug("Updating...");
   let promise = new Promise((resolve, reject) => {
@@ -30,26 +32,54 @@ function updateReading(db, readingDoc) {
   return promise;
 }
 
+// This function comes up ones every request to check provided options and set
+// defaults if necesary 
 function checkOpts(opts) {
+  // Get current server time
   var currentDay = parseInt(moment().utcOffset(settings.utcOffset).format('YYYYMMDD'));
-  // currentDay.setHours(0,0,0,0);
-  logger.debug("Current time: ", currentDay);
+
+  logger.debug("Server date:", currentDay);
+ 
+  // If no options are provided, set default optionset
   if (typeof opts === 'undefined') {
     opts = {
       date: currentDay,
       lang: 'AM'
     };
+
+    // Return this default value
     return opts;
   }
-  if (typeof opts.date === 'undefined') { opts.date = currentDay; }
+
+  // If only some options are not provided then provide defaults
+  // Date: currentDay
+  if (typeof opts.date === 'undefined') { 
+    if (typeof opts.utcOffset === 'undefined') {
+      opts.utcOffset = settings.utcOffset;
+    } else {
+      logger.debug("Using utcOffset provided: ", opts.utcOffset);
+      currentDay = parseInt(moment().utcOffset(parseInt(opts.utcOffset)).format('YYYYMMDD'));
+    }
+    opts.date = currentDay; 
+  }
   else { opts.date = parseInt(moment(opts.date, 'YYYYMMDD').format('YYYYMMDD')); }
+
+  logger.debug("Request date:", opts.date);
+
+  // Lang: 'AM'
   if (typeof opts.lang === 'undefined') { opts.lang = 'AM'; }
+
+  // Return the processed options
   return opts;
 }
 
+// Main function called to fetch liturgic data
 api.getLiturgy = function(liturgyOpts) {
+  // Process the provided options
   liturgyOpts = checkOpts(liturgyOpts);
   logger.debug("Set options: ", liturgyOpts);
+
+  // Create a new promise, so we can resolve to success or failure
   let promise = new Promise((resolve, reject) => {
     getConnection().then((db) => {
       // Look for the document in database
@@ -356,7 +386,9 @@ api.getLiturgy = function(liturgyOpts) {
     });
   });
 
+  // Return the created promise
   return promise;
 };
 
+// Export this module
 module.exports = api;
