@@ -7,6 +7,8 @@ import { getConnection } from '@/config/mongodb';
 import logger from '@/config/logger';
 import settings from '@/config/settings';
 
+// We need to come up with a way to ignore those days that are far away from
+// being inserted. Otherwise setup a job to delete empty records
 var api = {};
 
 function updateReading(db, readingDoc) {
@@ -87,7 +89,7 @@ api.getLiturgy = function(liturgyOpts) {
 
               // Update reading document
               readingDoc.content.liturgicTitle = str;
-              logger.debug("Got liturgicTitle");
+              logger.debug("Got liturgicTitle: " + str);
 
               // Increment counter of completed tasks
               counter++;

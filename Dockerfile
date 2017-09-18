@@ -5,4 +5,6 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN yarn
+RUN yarn --no-progress
+
+CMD npm start
